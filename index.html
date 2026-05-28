@@ -63,6 +63,90 @@
     margin-right: 14px;
   }
 
+  /* USAGE BANNER */
+  .usage-banner {
+    margin-bottom: 28px;
+    padding: 20px 24px;
+    border: 2px solid #000;
+    background: #fff;
+  }
+
+  .usage-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin-bottom: 14px;
+  }
+
+  .usage-steps {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .usage-step {
+    padding: 12px 14px;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .usage-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .usage-step-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .usage-step-desc {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .usage-arrow {
+    align-self: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+  }
+
+  .usage-note {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #000;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .usage-note a {
+    color: #000;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .usage-note strong {
+    color: #000;
+    font-weight: 700;
+  }
+
+  @media (max-width: 960px) {
+    .usage-steps {
+      grid-template-columns: 1fr;
+    }
+    .usage-arrow {
+      display: none;
+    }
+  }
+
   /* LAYOUT */
   .layout {
     display: grid;
@@ -462,6 +546,38 @@
     <a href="https://github.com/jungpyo-mtr/copywrite-tool" target="_blank">↗ GitHub 저장소</a>
   </div>
 </header>
+
+<section class="usage-banner">
+  <div class="usage-title">사용법 — 4단계</div>
+  <div class="usage-steps">
+    <div class="usage-step">
+      <div class="usage-num">STEP 01</div>
+      <div class="usage-step-title">폼 작성</div>
+      <div class="usage-step-desc">아래 폼 6섹션 채우기. 카피 유형 + 사전 4질문 필수, 나머지는 선택.</div>
+    </div>
+    <div class="usage-arrow">→</div>
+    <div class="usage-step">
+      <div class="usage-num">STEP 02</div>
+      <div class="usage-step-title">프롬프트 복사</div>
+      <div class="usage-step-desc">우측에 자동 생성된 텍스트 → 하단 "복사" 버튼 클릭.</div>
+    </div>
+    <div class="usage-arrow">→</div>
+    <div class="usage-step">
+      <div class="usage-num">STEP 03</div>
+      <div class="usage-step-title">Claude에 붙여넣기</div>
+      <div class="usage-step-desc">claude.ai 웹 또는 Claude Code 대화창에 그대로 붙여넣기.</div>
+    </div>
+    <div class="usage-arrow">→</div>
+    <div class="usage-step">
+      <div class="usage-num">STEP 04</div>
+      <div class="usage-step-title">결과 검토</div>
+      <div class="usage-step-desc">3안 + 근거 + 추천안이 포함된 카피 제안서를 받아 검토.</div>
+    </div>
+  </div>
+  <div class="usage-note">
+    <strong>Claude 계정이 없다면</strong> → <a href="https://claude.ai" target="_blank">claude.ai</a>에서 이메일로 무료 가입 (1분). 별도 결제 없이 사용 가능합니다.
+  </div>
+</section>
 
 <div class="layout">
 
