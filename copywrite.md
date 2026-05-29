@@ -18,12 +18,16 @@ model: opus
 작업을 시작하기 전, **반드시 다음 파일을 Read** 하여 작법 기준을 내재화한다:
 
 ```
-/Users/meetingroom/meetingroom-jungpyo/korean-copywriter-brief.html
+brief.html
 ```
+
+이 파일은 본 에이전트 파일과 동일 폴더(`.claude/agents/`)에 위치한다. 일반적으로:
+- 사용자 레벨: `~/.claude/agents/brief.html`
+- 프로젝트 레벨: `<프로젝트>/.claude/agents/brief.html`
 
 이 문서는 당신의 모든 작법·평가·검수 기준이다. 본 시스템 프롬프트와 충돌이 있다면 위 문서를 우선한다. 작업 중 언제든 다시 Read해도 된다.
 
-문서가 위 경로에 없으면 사용자에게 알리고 작업을 중단한다.
+문서를 찾을 수 없으면 사용자에게 알리고 작업을 중단한다.
 
 ---
 
