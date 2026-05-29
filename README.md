@@ -20,15 +20,16 @@
 
 GUI를 거치지 않고 Claude Code에서 곧바로 호출 가능.
 
-**설치**:
+**설치 (폴더 통째로 + 심볼릭 링크 1개)**:
 ```bash
-# 1. 레포 클론
-git clone https://github.com/jungpyo-mtr/copywrite-tool.git
+# 1. 레포 클론 (폴더 이름은 copywrite로 통일)
+git clone https://github.com/jungpyo-mtr/copywrite-tool.git copywrite
 
-# 2. 본인 Claude Code 에이전트 폴더로 파일 복사
-cp copywrite-tool/copywrite.md ~/.claude/agents/
-# 분석 문서도 함께 두면 에이전트가 자동 참조
-cp copywrite-tool/brief.html ~/.claude/agents/
+# 2. 사용자 레벨 .claude/agents/로 이동
+mv copywrite ~/.claude/agents/
+
+# 3. Claude Code가 인식하도록 심볼릭 링크 생성
+cd ~/.claude/agents && ln -s copywrite/copywrite.md copywrite.md
 ```
 
 **사용**: 그냥 "카피 짜줘", "슬로건 만들어줘" 등 평범하게 요청하면 자동 invoke.
@@ -38,15 +39,20 @@ cp copywrite-tool/brief.html ~/.claude/agents/
 ## 도구 구성
 
 ```
-copywrite-tool/ (= 정표 님 로컬의 .claude/agents/)
-├── index.html                  ← GUI 입력 폼 (GitHub Pages 메인)
-├── brief.html                  ← 한국 카피라이터 작법 분석 문서 (17섹션)
-├── copywrite.md                ← Claude Code 에이전트 본체
-├── copywrite-refference.md     ← 에이전트 제작 기획 문서 (참고용)
-├── README.md                   ← 이 파일
-├── deploy.sh                   ← 배포 스크립트 (관리자용)
-└── .gitignore
+.claude/agents/                  ← Claude Code 에이전트 폴더
+├── copywrite.md → copywrite/copywrite.md   (심볼릭 링크)
+└── copywrite/                   ← 모든 copywrite 파일 (= GitHub 저장소)
+    ├── index.html               ← GUI 입력 폼 (GitHub Pages 메인)
+    ├── brief.html               ← 한국 카피라이터 작법 분석 문서 (17섹션)
+    ├── copywrite.md             ← Claude Code 에이전트 본체 (실제 파일)
+    ├── copywrite-refference.md  ← 에이전트 제작 기획 문서 (참고용)
+    ├── README.md                ← 이 파일
+    ├── deploy.sh                ← 배포 스크립트 (관리자용)
+    ├── .gitignore
+    └── .git/                    ← git 메타데이터 (숨김)
 ```
+
+**심볼릭 링크가 핵심**: Claude Code는 `.claude/agents/` 직속 자식의 .md 파일만 에이전트로 스캔. 폴더 안 실제 파일을 가리키는 링크 하나로 인식이 보장됨.
 
 ---
 
@@ -116,14 +122,14 @@ PDF로 저장하려면 브라우저에서 Cmd+P → PDF 저장.
 ## 관리자용 — 운영 가이드
 
 ### 폴더 위치
-정표 님 로컬에서는 `.claude/agents/`가 이 GitHub 저장소의 작업 폴더입니다. 즉:
-- `.claude/agents/copywrite.md` 수정 = Claude Code가 즉시 사용
+정표 님 로컬에서는 `.claude/agents/copywrite/`가 이 GitHub 저장소의 작업 폴더입니다.
+- 폴더 안 어떤 파일이든 수정 = Claude Code가 즉시 사용 (`copywrite.md`은 심볼릭 링크로 연결)
 - 푸시 전까지는 **로컬에만 반영** (팀에 미반영)
 
 ### 한 번에 배포
 
 ```bash
-cd ~/.claude/agents
+cd ~/.claude/agents/copywrite
 ./deploy.sh
 ```
 
